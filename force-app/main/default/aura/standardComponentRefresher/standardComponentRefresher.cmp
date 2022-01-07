@@ -1,0 +1,3 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+        <c:chs_questionnaire onlinked="{!c.refresh}" recordId="{!v.recordId}" />
+</aura:component>

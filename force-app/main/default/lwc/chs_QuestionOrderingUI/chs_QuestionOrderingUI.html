@@ -1,0 +1,111 @@
+<template>
+
+    
+
+
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                  <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create Questionnaire Question</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-record-form
+                        object-api-name="Question__c"
+                        fields={fields}
+                        onsuccess={handleSuccess}
+                        oncancel ={closeModal}>
+                      </lightning-record-form>
+              </div>
+              <footer class="slds-modal__footer">
+              </footer>
+            </div>
+          </section>
+    </template>
+
+
+
+
+
+
+
+
+
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        <div class="slds-size_1-of-2">
+            <lightning-combobox name="types" label="Call Questionnaire" value={value} options={TypeQuestionnaireOptions} onchange={handleCallQuestionnaireChange}> </lightning-combobox> 
+        </div>
+
+        <div class="slds-size_1-of-2">
+            <lightning-button variant="brand" label="New Question" title="New Question" onclick={createQuestion} class="slds-m-left_x-small slds-float_right" style="margin-top: -10px;"></lightning-button>
+        </div>
+   </div>
+
+   <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+    <div class="slds-size_1-of-2">
+        <lightning-combobox name="types" label="Call Questionnaire Sectionnaire" value={value} options={TypeQuestionnaireSectionOptions} onchange={handleCallQuestionnaireSectionChange}> </lightning-combobox> 
+    </div>
+</div>
+
+<div class="demo-only demo-only--sizing slds-grid slds-wrap">
+<div class="slds-size_1-of-2">
+    <template if:true={showOrderQuestion}>
+        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+            <template for:each={orderedQuestion} for:item="ques" for:index="indx">
+                <div key={ques.Id} class="lineRow" draggable="true" ondragstart={DragStart} data-serial={ques.Sr_No__c} data-indx={indx} ondrop={onDrop} ondragenter={onDragEnter} ondragleave={onDragLeave} ondragover={onDragOver}>
+                    <article class="slds-card slds-m-bottom_x-small">
+                        <div class="slds-card__body slds-card__body_inner">
+        
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <div data-label="Title">
+                                        <div title={ques.Name}>{ques.Name}</div>
+                                    </div>
+                                    <div data-label="Title">
+                                        <div title={ques.Available_for__c}>{ques.Available_for__c}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </template>    
+        </div>
+    </template> 
+</div>
+
+   <div class="slds-size_1-of-2">
+        <template if:true={showUnOrderQuestion}>
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">      
+                <template for:each={unOrderedQuestion} for:item="ques" for:index="indx">
+                    <div key={ques.Id} class="lineRow" draggable="true" ondragstart={DragStart} data-serial={ques.Sr_No__c} data-indx={indx} ondrop={onDrop} ondragenter={onDragEnter} ondragleave={onDragLeave} ondragover={onDragOver}>
+                        <article class="slds-card slds-m-bottom_x-small">
+                            <div class="slds-card__body slds-card__body_inner">
+            
+                                <div class="slds-grid slds-gutters slds-wrap">
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <div data-label="Title">
+                                            <div title={ques.Name}>{ques.Name}</div>
+                                        </div>
+                                        <div data-label="Title">
+                                            <div title={ques.Available_for__c}>{ques.Available_for__c}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </template>    
+            </div>
+        </template>
+  </div>
+  </div>
+
+</template>

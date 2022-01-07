@@ -1,0 +1,22 @@
+/*.ques_ans-wrap {
+    padding: 15px;
+}
+.slds-tabs_card {
+    z-index: -1;
+    position: relative;
+}
+.clear_padding-tb {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.header_area {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #dddbda;
+}
+.header_area h1 {
+    font-size: 1.25rem;
+}*/
